@@ -1,0 +1,38 @@
+<!DOCTYPE html><html lang="uz"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Koinot | Abdulloh.X</title>
+<style>
+html,body{margin:0;height:100%;background:#000;color:#fff;font-family:Arial;overflow-x:hidden}
+canvas{position:fixed;inset:0;z-index:-2}
+#bh{position:fixed;left:50%;top:50%;width:220px;height:220px;transform:translate(-50%,-50%);border-radius:50%;
+background:radial-gradient(circle,#000 35%,#222 37%,#59f 40%,transparent 60%);
+animation:spin 8s linear infinite, pulse 3s ease-in-out infinite;filter:drop-shadow(0 0 40px #59f)}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+@keyframes pulse{50%{filter:drop-shadow(0 0 80px #8cf)}}
+header{padding:60px 20px;text-align:center}
+h1{font-size:3em;color:#8df}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;padding:20px}
+.card{background:rgba(255,255,255,.08);backdrop-filter:blur(10px);padding:18px;border-radius:18px}
+.planet{width:140px;height:140px;margin:auto;border-radius:50%;animation:r 14s linear infinite}
+@keyframes r{to{rotate:360deg}}
+.e{background:radial-gradient(circle at 30% 30%,#8ef,#06f,#012)}
+.m{background:radial-gradient(circle at 30% 30%,#fa8,#a22,#300)}
+.s{background:radial-gradient(circle,#ff0,#f90,#f30)}
+footer{text-align:center;padding:30px;color:#8df}
+</style></head><body>
+<canvas id=c></canvas><div id=bh></div>
+<header><h1>🌌 KOINOT</h1><p>Interaktiv koinot sahifasi</p></header>
+<section class=grid>
+<div class=card><div class="planet e"></div><h2>🌍 Yer</h2><p>Yer — hayot mavjudligi tasdiqlangan yagona sayyora. Atmosfera, suv va magnit maydon hayotni qo'llab-quvvatlaydi.</p></div>
+<div class=card><div class="planet m"></div><h2>🔴 Mars</h2><p>Mars qizil sayyora bo'lib, muz qatlamlari va qadimiy daryo izlari aniqlangan.</p></div>
+<div class=card><div class="planet s"></div><h2>☀️ Quyosh</h2><p>Quyosh Quyosh tizimining markazidagi yulduz bo'lib, tizim massasining asosiy qismini tashkil qiladi.</p></div>
+<div class=card><h2>⚫ Qora tuynuk</h2><p>Qora tuynukning gravitatsiyasi juda kuchli. Markazdagi animatsiya uning ramziy ko'rinishidir.</p></div>
+</section>
+<footer>Abdulloh.X</footer>
+<script>
+const x=c.getContext('2d');function rs(){c.width=innerWidth;c.height=innerHeight}rs();onresize=rs;
+let s=[...Array(250)].map(()=>({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*2+0.3,v:Math.random()*0.7+0.2}));
+function a(){x.fillStyle="#000";x.fillRect(0,0,c.width,c.height);x.fillStyle="#fff";
+for(let p of s){p.y+=p.v;if(p.y>c.height){p.y=0;p.x=Math.random()*c.width}x.beginPath();x.arc(p.x,p.y,p.r,0,6.28);x.fill()}
+requestAnimationFrame(a)}a();
+</script></body></html>
