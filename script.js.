@@ -1,0 +1,81 @@
+// ===== Abdulloh.X | Koinot =====
+
+// Meteor animatsiyasi
+
+const meteorContainer = document.getElementById("meteors");
+
+function createMeteor(){
+
+const meteor=document.createElement("div");
+
+meteor.className="meteor";
+
+meteor.style.left=Math.random()*window.innerWidth+"px";
+
+meteor.style.top="-50px";
+
+meteor.style.animationDuration=(Math.random()*2+2)+"s";
+
+meteor.style.opacity=Math.random();
+
+meteorContainer.appendChild(meteor);
+
+setTimeout(()=>{
+
+meteor.remove();
+
+},4000);
+
+}
+
+setInterval(createMeteor,500);
+
+// Tugmani bosganda silliq o'tish
+
+document.querySelectorAll('a[href^="#"]').forEach(link=>{
+
+link.addEventListener("click",function(e){
+
+e.preventDefault();
+
+document.querySelector(this.getAttribute("href")).scrollIntoView({
+
+behavior:"smooth"
+
+});
+
+});
+
+});
+
+// Kartalarga animatsiya
+
+const cards=document.querySelectorAll(".planet-card");
+
+const observer=new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.style.opacity="1";
+
+entry.target.style.transform="translateY(0px)";
+
+}
+
+});
+
+});
+
+cards.forEach(card=>{
+
+card.style.opacity="0";
+
+card.style.transform="translateY(100px)";
+
+card.style.transition=".8s";
+
+observer.observe(card);
+
+});
